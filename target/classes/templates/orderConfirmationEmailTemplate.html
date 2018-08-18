@@ -27,7 +27,7 @@
 <br/>
 <p>Thank you for shopping from our book store. We hope you had a good time with our service!</p>
 <p>Your order number is: <strong>#<span th:text="${order.id}"></span></strong>. Here is your order detail:</p>
-<h2>Order Detail for purchase #<span th:text="${order.id}"></span></h2>
+<h2>Order Detail for #<span th:text="${order.id}"></span></h2>
 <hr/>
 
 <table>
@@ -53,7 +53,7 @@
                 th:text="${order.payment.expiryYear}"></span><br/>
         </td>
         <td>
-            <span th:text="${order.shippingAddress.shippingAddressName}">David Peere:</span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressName}">Sarthak Sachdeva:</span><br/>
             <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
             <span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
             <span th:text="${order.shippingAddress.shippingAddressState}"></span><br/>
