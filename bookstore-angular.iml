@@ -131,5 +131,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:5.1.46" level="project" />
     <orderEntry type="library" name="javax.xml.bind:jaxb-api:2.3.0" level="project" />
+    <orderEntry type="library" name="org.springframework.data:spring-data-redis:2.0.9.RELEASE" level="project" />
   </component>
 </module>
