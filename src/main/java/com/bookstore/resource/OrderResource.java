@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookstore.domain.Order;
-import com.bookstore.domain.User;
+import com.bookstore.models.Order;
+import com.bookstore.models.User;
 import com.bookstore.service.UserService;
 
 @RestController

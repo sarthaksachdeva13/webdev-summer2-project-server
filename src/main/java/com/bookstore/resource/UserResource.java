@@ -1,8 +1,12 @@
 package com.bookstore.resource;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.config.SecurityConfig;
 import com.bookstore.config.SecurityUtility;
-import com.bookstore.domain.User;
-import com.bookstore.domain.security.Role;
-import com.bookstore.domain.security.UserRole;
+import com.bookstore.models.User;
+import com.bookstore.models.security.Role;
+import com.bookstore.models.security.UserRole;
 import com.bookstore.service.UserService;
 import com.bookstore.utility.MailConstructor;
 
@@ -39,18 +43,25 @@ public class UserResource {
 	@Autowired
 	private JavaMailSender mailSender;
 
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public User addBookPost(@RequestBody User user) {
+        return userService.save(user);
+    }
+
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	public ResponseEntity newUserPost(HttpServletRequest request, @RequestBody HashMap<String, String> mapper)
+	public ResponseEntity<String> newUserPost(HttpServletRequest request, @RequestBody HashMap<String, String> mapper)
 			throws Exception {
+
 		String username = mapper.get("username");
 		String userEmail = mapper.get("email");
 
 		if (userService.findByUsername(username) != null) {
-			return new ResponseEntity("usernameExists", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("usernameExists", HttpStatus.BAD_REQUEST);
 		}
 
 		if (userService.findByEmail(userEmail) != null) {
-			return new ResponseEntity("emailExists", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("emailExists", HttpStatus.BAD_REQUEST);
 		}
 
 		User user = new User();
@@ -72,18 +83,18 @@ public class UserResource {
 		SimpleMailMessage email = mailConstructor.constructNewUserEmail(user, password);
 		mailSender.send(email);
 
-		return new ResponseEntity("User Added Successfully!", HttpStatus.OK);
+		return new ResponseEntity<>("User Added Successfully!", HttpStatus.OK);
 
 	}
 
 	@RequestMapping(value = "/forgetPassword", method = RequestMethod.POST)
-	public ResponseEntity forgetPasswordPost(HttpServletRequest request, @RequestBody HashMap<String, String> mapper)
+	public ResponseEntity<String> forgetPasswordPost(HttpServletRequest request, @RequestBody HashMap<String, String> mapper)
 			throws Exception {
 
 		User user = userService.findByEmail(mapper.get("email"));
 
 		if (user == null) {
-			return new ResponseEntity("Email not found", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Email not found", HttpStatus.BAD_REQUEST);
 		}
 		String password = SecurityUtility.randomPassword();
 
@@ -94,12 +105,12 @@ public class UserResource {
 		SimpleMailMessage newEmail = mailConstructor.constructNewUserEmail(user, password);
 		mailSender.send(newEmail);
 
-		return new ResponseEntity("Email sent!", HttpStatus.OK);
+		return new ResponseEntity<>("Email sent!", HttpStatus.OK);
 
 	}
 
 	@RequestMapping(value="/updateUserInfo", method=RequestMethod.POST)
-	public ResponseEntity profileInfo(
+	public ResponseEntity<String> profileInfo(
 				@RequestBody HashMap<String, Object> mapper
 			) throws Exception{
 		
@@ -119,13 +130,13 @@ public class UserResource {
 		
 		if(userService.findByEmail(email) != null) {
 			if(userService.findByEmail(email).getId() != currentUser.getId()) {
-				return new ResponseEntity("Email not found!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Email not found!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
 		if(userService.findByUsername(username) != null) {
 			if(userService.findByUsername(username).getId() != currentUser.getId()) {
-				return new ResponseEntity("Username not found!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Username not found!", HttpStatus.BAD_REQUEST);
 			}
 		}
 		
@@ -142,7 +153,7 @@ public class UserResource {
 				}
 				currentUser.setEmail(email);
 			} else {
-				return new ResponseEntity("Incorrect current password!", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("Incorrect current password!", HttpStatus.BAD_REQUEST);
 			}
 		
 		
@@ -153,7 +164,7 @@ public class UserResource {
 		
 		userService.save(currentUser);
 		
-		return new ResponseEntity("Update Success", HttpStatus.OK);
+		return new ResponseEntity<>("Update Success", HttpStatus.OK);
 	}
 
 	@RequestMapping("/getCurrentUser")
@@ -165,5 +176,19 @@ public class UserResource {
 
 		return user;
 	}
+
+	@RequestMapping("/userList")
+	public List<User> getUserList() {
+		return userService.findAll();
+	}
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    public ResponseEntity<String> remove(@RequestBody String id) throws IOException {
+        userService.removeOne(Long.parseLong(id));
+        return new ResponseEntity<>("Remove Success!", HttpStatus.OK);
+    }
+
+
+
 
 }

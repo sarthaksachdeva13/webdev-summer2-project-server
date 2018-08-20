@@ -1,6 +1,6 @@
 package com.bookstore.service;
 
-import com.bookstore.domain.ShoppingCart;
+import com.bookstore.models.ShoppingCart;
 
 public interface ShoppingCartService {
 	

@@ -1,6 +1,6 @@
 package com.bookstore.service;
 
-import com.bookstore.domain.UserShipping;
+import com.bookstore.models.UserShipping;
 
 public interface UserShippingService {
 	

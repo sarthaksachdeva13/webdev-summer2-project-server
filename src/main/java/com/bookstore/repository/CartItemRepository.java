@@ -6,8 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.bookstore.domain.CartItem;
-import com.bookstore.domain.ShoppingCart;
+import com.bookstore.models.CartItem;
+import com.bookstore.models.ShoppingCart;
 @Transactional
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
 	List<CartItem> findByShoppingCart(ShoppingCart shoppingCart);

@@ -3,11 +3,11 @@ package com.bookstore.service;
 import java.util.List;
 import java.util.Set;
 
-import com.bookstore.domain.User;
-import com.bookstore.domain.UserBilling;
-import com.bookstore.domain.UserPayment;
-import com.bookstore.domain.UserShipping;
-import com.bookstore.domain.security.UserRole;
+import com.bookstore.models.User;
+import com.bookstore.models.UserBilling;
+import com.bookstore.models.UserPayment;
+import com.bookstore.models.UserShipping;
+import com.bookstore.models.security.UserRole;
 
 public interface UserService {
 	
@@ -16,12 +16,16 @@ public interface UserService {
 	User findByUsername(String username);
 	
 	User findByEmail (String email);
+
+	List<User> findAll();
 	
 	User save(User user);
 	
 	User findById(Long id);
-	
-	void updateUserPaymentInfo(UserBilling userBilling, UserPayment userPayment, User user);
+
+    void removeOne(Long id);
+
+    void updateUserPaymentInfo(UserBilling userBilling, UserPayment userPayment, User user);
 	
 	void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 	

@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import com.bookstore.domain.Order;
-import com.bookstore.domain.User;
+import com.bookstore.models.Order;
+import com.bookstore.models.User;
 
 @Component
 public class MailConstructor {

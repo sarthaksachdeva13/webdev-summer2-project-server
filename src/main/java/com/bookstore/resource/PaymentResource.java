@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookstore.domain.User;
-import com.bookstore.domain.UserBilling;
-import com.bookstore.domain.UserPayment;
+import com.bookstore.models.User;
+import com.bookstore.models.UserBilling;
+import com.bookstore.models.UserPayment;
 import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
 

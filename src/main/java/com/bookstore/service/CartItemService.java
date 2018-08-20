@@ -2,10 +2,10 @@ package com.bookstore.service;
 
 import java.util.List;
 
-import com.bookstore.domain.Book;
-import com.bookstore.domain.CartItem;
-import com.bookstore.domain.ShoppingCart;
-import com.bookstore.domain.User;
+import com.bookstore.models.Book;
+import com.bookstore.models.CartItem;
+import com.bookstore.models.ShoppingCart;
+import com.bookstore.models.User;
 
 public interface CartItemService {
 	

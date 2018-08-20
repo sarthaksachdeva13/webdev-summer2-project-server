@@ -9,9 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.bookstore.config.SecurityUtility;
-import com.bookstore.domain.User;
-import com.bookstore.domain.security.Role;
-import com.bookstore.domain.security.UserRole;
+import com.bookstore.models.User;
+import com.bookstore.models.security.Role;
+import com.bookstore.models.security.UserRole;
 import com.bookstore.service.UserService;
 
 @SpringBootApplication
@@ -39,6 +39,20 @@ public class BookstoreAngularApplication implements CommandLineRunner {
 		userRoles.add(new UserRole(user1, role1));
 		
 		userService.createUser(user1, userRoles);
+
+
+//        User user3 = new User();
+//        user3.setFirstName("Dan");
+//        user3.setLastName("Brown");
+//        user3.setUsername("dan");
+//        user3.setPassword(SecurityUtility.passwordEncoder().encode("dan"));
+//        user3.setEmail("dan@brown.com");
+//        Role role3 = new Role();
+//        role3.setRoleId(2);
+//        role3.setName("ROLE_AUTHOR");
+//        userRoles.add(new UserRole(user3, role3));
+//
+//        userService.createUser(user3, userRoles);
 		
 		userRoles.clear();
 		

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookstore.domain.Book;
-import com.bookstore.domain.CartItem;
-import com.bookstore.domain.ShoppingCart;
-import com.bookstore.domain.User;
+import com.bookstore.models.Book;
+import com.bookstore.models.CartItem;
+import com.bookstore.models.ShoppingCart;
+import com.bookstore.models.User;
 import com.bookstore.service.BookService;
 import com.bookstore.service.CartItemService;
 import com.bookstore.service.ShoppingCartService;

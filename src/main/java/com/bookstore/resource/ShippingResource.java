@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookstore.domain.User;
-import com.bookstore.domain.UserShipping;
+import com.bookstore.models.User;
+import com.bookstore.models.UserShipping;
 import com.bookstore.service.UserService;
 import com.bookstore.service.UserShippingService;
 

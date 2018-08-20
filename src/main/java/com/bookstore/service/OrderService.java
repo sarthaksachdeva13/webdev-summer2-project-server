@@ -1,11 +1,11 @@
 package com.bookstore.service;
 
-import com.bookstore.domain.BillingAddress;
-import com.bookstore.domain.Order;
-import com.bookstore.domain.Payment;
-import com.bookstore.domain.ShippingAddress;
-import com.bookstore.domain.ShoppingCart;
-import com.bookstore.domain.User;
+import com.bookstore.models.BillingAddress;
+import com.bookstore.models.Order;
+import com.bookstore.models.Payment;
+import com.bookstore.models.ShippingAddress;
+import com.bookstore.models.ShoppingCart;
+import com.bookstore.models.User;
 
 public interface OrderService {
 	
